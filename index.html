@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherApp-Api</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+   
+    <header>
+      <h1>NYC Borough Weather Forecast</h1>
+    </header>
+
+   <nav>
+      <button><a onclick="showForecast('manhattan')">Manhattan</a></button>
+      <button><a onclick="showForecast('brooklyn')">Brooklyn</a></button>
+      <button><a onclick="showForecast('queens')">Queens</a></button>
+      <button><a onclick="showForecast('bronx')">Bronx</a></button>
+      <button><a onclick="showForecast('staten')">Staten Island</a></button>
+    </nav>
+
+    <!-- Forecast sections for each borough -->
+    <section id="manhattan" class="forecast-section active">
+      <h2>Weekly Forecast: Manhattan</h2>
+    </section>
+
+    <section id="brooklyn" class="forecast-section">
+      <h2>Weekly Forecast: Brooklyn</h2>
+    </section>
+
+    <section id="queens" class="forecast-section">
+      <h2>Weekly Forecast: Queens</h2>
+    </section>
+
+    <section id="bronx" class="forecast-section">
+      <h2>Weekly Forecast: The Bronx</h2>
+    </section>
+
+    <section id="staten" class="forecast-section">
+      <h2>Weekly Forecast: Staten Island</h2>
+    </section>
+  </body>
+</html>
+
+  <!-- JavaScript for showing the selected borough's forecast -->
+  <script>
+    // Shows the forecast section for the selected borough
+    function showForecast(borough) {
+      const sections = document.querySelectorAll('.forecast-section');
+      sections.forEach((section) => {
+        section.classList.remove('active');
+      });
+      document.getElementById(borough).classList.add('active');
+    }
+  </script>
+
