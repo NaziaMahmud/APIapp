@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NYC Borough Weather</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>NYC Borough Weather</h1>
+    <nav class="taskbar">
+        <% boroughs.forEach(borough => { %>
+            <a href="/<%= borough %>"><%= borough.charAt(0).toUpperCase() + borough.slice(1) %></a>
+        <% }); %>
+    </nav>
+    <p>Select a borough to view its current weather</p>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= borough %> Weather</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1><%= borough %> Weather</h1>
+    <nav class="taskbar">
+        <a href="/">Home</a>
+        <% Object.keys(boroughs).forEach(b => { %>
+            <a href="/<%= b %>"><%= b.charAt(0).toUpperCase() + b.slice(1) %></a>
+        <% }); %>
+    </nav>
+    
+    <div class="weather-container">
+        <h2>Current Weather</h2>
+        <img src="http://openweathermap.org/img/wn/<%= weather.icon %>@2x.png" alt="Weather icon">
+        <p>Temperature: <%= weather.temp %>°F</p>
+        <p>Conditions: <%= weather.description %></p>
+        <p>Humidity: <%= weather.humidity %>%</p>
+        <p>Wind Speed: <%= weather.windSpeed %> mph</p>
+    </div>
+</body>
+</html>
