@@ -1,0 +1,22 @@
+# This is a comment - Git ignores lines starting with #
+
+# Ignore all files with .log extension
+*.log
+
+# Ignore the entire node_modules directory
+node_modules/
+
+# Ignore specific files
+config.json
+secrets.txt
+
+# Ignore all files in temp directory
+temp/
+
+# Ignore .env files (environment variables)
+.env
+.env.local
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db

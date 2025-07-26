@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "name": "apiapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NaziaMahmud/APIapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/NaziaMahmud/APIapp/issues"
+  },
+  "homepage": "https://github.com/NaziaMahmud/APIapp#readme"
+}
