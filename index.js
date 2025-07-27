@@ -1,122 +1,78 @@
-// Import Express framework
-const express = require('express');
+import express from "express";
+import bodyParser from "body-parser";
+import axios from "axios";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// Create an Express application
 const app = express();
-
-// Set the port
 const PORT = 3000;
 
-// Middleware to parse JSON bodies
-app.use(express.json());
+app.use(express.static('public'));
 
-// Basic route - GET request
 app.get('/', (req, res) => {
-  res.json({
-    message: 'Welcome to my API!',
-    status: 'success',
-    timestamp: new Date().toISOString()
-  });
+  res.sendFile(__dirname + '/public/index.html');
 });
 
-// GET route - Get all users (example)
-app.get('/api/users', (req, res) => {
-  const users = [
-    { id: 1, name: 'John Doe', email: 'john@example.com' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
-    { id: 3, name: 'Bob Johnson', email: 'bob@example.com' }
-  ];
-  
-  res.json({
-    status: 'success',
-    data: users,
-    count: users.length
-  });
+const bronxAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=40.83&lon=-73.86&appid=fd8037143be63499642841963b9ab217";
+const brooklynAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=40.65&lon=-73.95&appid=fd8037143be63499642841963b9ab217";
+const queensAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=40.74&lon=-73.79&appid=fd8037143be63499642841963b9ab217";
+const manhattanAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=40.77&lon=-73.97&appid=fd8037143be63499642841963b9ab217";
+const statenIslandAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=40.57&lon=-74.15&appid=fd8037143be63499642841963b9ab217";
+
+app.get('/bronx', async (req, res) => {
+  try {
+    const response = await axios.get(bronxAPI);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).send('Error fetching data from Bronx API');
+  }
 });
 
-// GET route - Get single user by ID
-app.get('/api/users/:id', (req, res) => {
-  const userId = parseInt(req.params.id);
-  const user = { id: userId, name: 'Sample User', email: 'user@example.com' };
-  
-  res.json({
-    status: 'success',
-    data: user
-  });
+app.get('/brooklyn', async (req, res) => {
+  try {
+    const response = await axios.get(brooklynAPI);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).send('Error fetching data from Brooklyn API');
+  }
 });
 
-// POST route - Create new user
-app.post('/api/users', (req, res) => {
-  const { name, email } = req.body;
-  
-  const newUser = {
-    id: Date.now(), // Simple ID generation
-    name: name,
-    email: email,
-    createdAt: new Date().toISOString()
-  };
-  
-  res.status(201).json({
-    status: 'success',
-    message: 'User created successfully',
-    data: newUser
-  });
+app.get('/queens', async (req, res) => {
+  try {
+    const response = await axios.get(queensAPI);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).send('Error fetching data from Queens API');
+  }
 });
 
-// PUT route - Update user
-app.put('/api/users/:id', (req, res) => {
-  const userId = parseInt(req.params.id);
-  const { name, email } = req.body;
-  
-  const updatedUser = {
-    id: userId,
-    name: name,
-    email: email,
-    updatedAt: new Date().toISOString()
-  };
-  
-  res.json({
-    status: 'success',
-    message: 'User updated successfully',
-    data: updatedUser
-  });
+app.get('/manhattan', async (req, res) => {
+  try {
+    const response = await axios.get(manhattanAPI);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).send('Error fetching data from Manhattan API');
+  }
 });
 
-// DELETE route - Delete user
-app.delete('/api/users/:id', (req, res) => {
-  const userId = parseInt(req.params.id);
-  
-  res.json({
-    status: 'success',
-    message: `User with ID ${userId} deleted successfully`
-  });
-});
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
-    status: 'error',
-    message: 'Something went wrong!'
-  });
-});
-
-// Handle 404 - Route not found
-app.use('*', (req, res) => {
-  res.status(404).json({
-    status: 'error',
-    message: 'Route not found'
-  });
+app.get('/staten', async (req, res) => {
+  try {
+    const response = await axios.get(statenIslandAPI);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).send('Error fetching data from Staten Island API');
+  }
 });
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
-  console.log(`📋 API endpoints:`);
-  console.log(`   GET    /                 - Welcome message`);
-  console.log(`   GET    /api/users        - Get all users`);
-  console.log(`   GET    /api/users/:id    - Get user by ID`);
-  console.log(`   POST   /api/users        - Create new user`);
-  console.log(`   PUT    /api/users/:id    - Update user`);
-  console.log(`   DELETE /api/users/:id    - Delete user`);
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
+  console.log(`📋 Available endpoints:`);
+  console.log(`   GET /           - Main webpage`);
+  console.log(`   GET /bronx      - Bronx weather data`);
+  console.log(`   GET /brooklyn   - Brooklyn weather data`);
+  console.log(`   GET /queens     - Queens weather data`);
+  console.log(`   GET /manhattan  - Manhattan weather data`);
+  console.log(`   GET /staten     - Staten Island weather data`);
 });

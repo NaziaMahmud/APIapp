@@ -112,3 +112,69 @@ nav button a {
     gap: 10px;
   }
 }
+
+/* Weather cards styling */
+.weather-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.weather-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  min-width: 140px;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.weather-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.weather-card h3 {
+  color: #783cff;
+  margin-bottom: 8px;
+  font-size: 1em;
+}
+
+.weather-card img {
+  width: 50px;
+  height: 50px;
+}
+
+.weather-card .temp {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #00d4ff;
+  margin: 8px 0;
+}
+
+.weather-card .description {
+  text-transform: capitalize;
+  color: #666;
+  margin: 6px 0;
+  font-size: 0.9em;
+}
+
+.weather-card .humidity {
+  color: #888;
+  font-size: 0.8em;
+}
+
+@media (max-width: 600px) {
+  .weather-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .weather-card {
+    min-width: 200px;
+  }
+}
